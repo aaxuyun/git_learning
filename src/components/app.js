@@ -4,6 +4,7 @@ export default class App extends Component {
     render() {
         return (
             <div>Hello React!</div>
+            <div>first line</div>
         );
     }
 }
