@@ -1,8 +1,8 @@
 const FILTRE_TODO="FILTER_TODO";
 
-export  const filterTodo=(id)=>{
-    return {
+const filterTodo=(filter)=>({
         type:FILTER_TODO,
-        id
-    }
-}
+        filter
+});
+
+export default {FILTRE_TODO,filterTodo};

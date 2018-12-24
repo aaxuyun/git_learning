@@ -3,23 +3,17 @@ const TOOGLE_TODO="TOOGLE_TODO";
 const REMOVE_TODO="REMOVE_TODO";
 
 
-export const addTodo= (text) => {
-    return {
+const addTodo= (text) => ({
         type:ADD_TODOITEM,
         text
-    }
-};
-export const toogleTodo=(id)=>{
-    return {
+});
+const toogleTodo=(id)=>({
         type: TOOGLE_TODO,
         id
-    }
-};
-export const removeTodo=(id)=>{
-    return {
+});
+const removeTodo=(id)=>({
         type: REMOVE_TODO,
         id
-    }
-};
+});
 
-
+export default {addTodo,toogleTodo,removeTodo,ADD_TODOITEM,TOOGLE_TODO,REMOVE_TODO};

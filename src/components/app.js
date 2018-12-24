@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import todoList from './todo_list';
-import filter from './filter';
+import React from 'react';
+import AddTodo from  "./addTodo";
+import TodoList from './todo_list';
+import Filter from './filter';
 
 
-export default class App extends Component {
+export default class App extends React.Component {
     render() {
         return (
           <div>
-            <todoList />
-            <filter />
+              <AddTodo />
+              <TodoList />
+              <Filter />
           </div>
         );
     }
