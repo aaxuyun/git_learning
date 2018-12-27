@@ -7,11 +7,11 @@ import TodoList from './todo_list';
 export default class App extends Component{
     render(){
         return (
-          <div>
-              <AddTodo />
-              <TodoList />
+            <div>
+                <AddTodo />
+                <TodoList />
 
-          </div>
+            </div>
         );
     }
 }
