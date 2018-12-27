@@ -1,14 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {immutable} from 'immutable';
-import {todoActions} from '../actions/todo_actions';
+import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-class AddTodo extends React.Component {
+import TodoActions from '../actions/todo_actions';
+
+class AddTodo extends Component {
     constructor(props){
         super(props);
         this.state={
             value:"",
         }
+    }
+    addTodoItem=()=>{
+        this.props.addTodo(this.state.value);
     }
     render() {
         return (
@@ -23,16 +27,19 @@ class AddTodo extends React.Component {
                         "border":"1px solid #ccc"
                     }}
                 />
-                <div onClick={this.props.addTodo(this.state.value)}>添加</div>
+                <div onClick={this.addTodoItem}>添加</div>
             </div>
         );
     }
 }
+const mapStateToProps=(state)=>{
+    return{};
 
-const mapDispatchToProps=()=> {
-    return {
-        addTodo:todoActions.addTodo
-    }
+};
+const mapDispatchToProps=(dispatch)=> {
+    return bindActionCreators({
+        addTodo:TodoActions.addTodo
+    },dispatch)
 };
 
-export default connect(mapDispatchToProps)(AddTodo);
+export default connect(mapStateToProps,mapDispatchToProps)(AddTodo);

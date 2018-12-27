@@ -1,11 +1,12 @@
 const ADD_TODOITEM="ADD_TODOITEM";
 const TOOGLE_TODO="TOOGLE_TODO";
 const REMOVE_TODO="REMOVE_TODO";
-
+let nextTodoId = 0;
 
 const addTodo= (text) => ({
         type:ADD_TODOITEM,
-        text
+        text,
+        id:nextTodoId++
 });
 const toogleTodo=(id)=>({
         type: TOOGLE_TODO,

@@ -1,28 +1,25 @@
-const TodoItem =(id,text,isCompleted,toogleTodo,removeTodo)=>{
-        let style;
-        if (isCompleted) {
-            style = {
-                "width": "100px",
-                "height": "20px",
-                "textDecoration": "line-through"
-            }
-        } else {
-            style = {
-                "width": "100px",
-                "height": "20px"
-            }
-        };
-        return (
+import React,{Component} from 'react';
 
-            <div>
-                <a onClick={toogleTodo(id)} style={style}>{text}</a>
-                <div onClick={removeTodo(id)}>删除</div>
-            </div>
+export default class TodoItem extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        const{id,text,isCompleted,toogleTodo,removeTodo}=this.props;
+        return (
+            <li>
+                <a onClick={()=>{toogleTodo(id)}}
+                   style={ {
+                    textDecoration: isCompleted ? 'line-through' : 'none'
+                     }}>{text}
+                </a>
+                <a onClick={()=>{removeTodo(id)}}>删除</a>
+            </li>
         )
+    }
 
 };
 
-export default TodoItem;
 
 
 

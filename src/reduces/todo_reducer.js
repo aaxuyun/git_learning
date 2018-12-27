@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import TodoActions from '../actions/todo_actions';
 
-const initTodoState=Immutable.fromJS({
+export let initTodoState=Immutable.fromJS({
     todos:[]
 });
 
@@ -10,8 +10,8 @@ export default function todoReducer(state=initTodoState,action){
         case TodoActions.ADD_TODOITEM:
             return state
                 .update('todos',list=>list.push(
-                    Immutable.map({
-                        id:state.get('todos').length+1,
+                    Immutable.Map({
+                        id:action.id,
                         text:action.text,
                         isCompleted:false
                     })
@@ -19,13 +19,13 @@ export default function todoReducer(state=initTodoState,action){
                 );
         case TodoActions.TOOGLE_TODO:
             return state
-                .update("todo",todo=>todo.map(item=>{
-                        item.get("id" )=== action.id ? item.update("isCompleted",value => !value) :item;
+                .update("todos",todos=>todos.map(item=>{
+                        return (item.get("id")=== action.id) ? item.update("isCompleted", value =>!value):item;
                     }
                 ));
         case TodoActions.REMOVE_TODO:
             return state
-                .update('todo',todo => todo.filter(item=>item.get("id")!== action.id));
+                .update('todos',todos => todos.filter(item=>item.get("id")!== action.id));
         default:
             return state;
     }

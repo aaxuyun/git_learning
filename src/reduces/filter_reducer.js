@@ -1,12 +1,12 @@
-import {immutable} from 'immutable';
-import {filterActions} from  '../actions/filter_actions';
+import Immutable from 'immutable';
+import {FilterActions} from  '../actions/filter_actions';
 
-const initFilterState = immutable.fromJS({
+let initFilterState = Immutable.fromJS({
   filter:""
 });
-export let filterReducer = (state=initFilterState,action) => {
+export let FilterReducer = (state=initFilterState,action) => {
     switch (action.type) {
-        case filterActions.FILTRE_TODO:
+        case FilterActions.FILTRE_TODO:
             return state
                 .set('filter',action.filter);
         default:

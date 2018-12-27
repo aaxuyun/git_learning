@@ -1,38 +1,48 @@
-import React from 'react';
+import React,{Component}from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 import TodoActions from '../actions/todo_actions';
 import TodoSelector from '../todo_selector/todo_selector';
 import TodoItem from "./todo_item";
 
-class TodoList extends React.Component{
+class TodoList extends Component{
+    constructor(props){
+        super(props);
+    }
     render() {
         return (
-            <div>
+            <ul>
                 {
-                    this.props.todos.map(item =>{
+                    (this.props.todos) && this.props.todos.map(item =>{
                      return (
+                         <div>
                              <TodoItem
+                                 key={item.id}
                                  id={item.id}
                                  text={item.text}
                                  isCompleted={item.isCompleted}
-                                 tooggleTodo={this.props.toogleTodo}
+                                 toogleTodo={this.props.toogleTodo}
                                  removeTodo={this.props.removeTodo}
                              />
+                         </div>
                      )
                     }
                     )
                 }
-            </div>
+            </ul>
         )
     }
 }
 
-const mapStateToProps=(state) => ({
+const mapStateToProps=(state) => {
+        return {
         todos:TodoSelector.getTodos(state)
-});
+}};
 
-    const mapDispatchToProps=()=>({
+const mapDispatchToProps=(dispatch)=>{
+    return bindActionCreators({
         toogleTodo:TodoActions.toogleTodo,
-            removeTodo:TodoActions.removeTodo,
-    });
-    export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
+        removeTodo:TodoActions.removeTodo,
+    },dispatch);
+}
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList);
